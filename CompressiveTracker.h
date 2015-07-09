@@ -27,6 +27,8 @@ class CompressiveTracker
 {
 public:
   float radioMax;
+	float learnRate;
+	int rSearchWindow;
     CompressiveTracker(void);
 	~CompressiveTracker(void);
 
@@ -39,7 +41,6 @@ private:
 	int rOuterPositive;
 	vector<Rect> samplePositiveBox;
 	vector<Rect> sampleNegativeBox;
-	int rSearchWindow;
 	Mat imageIntegral;
 	Mat samplePositiveFeatureValue;
 	Mat sampleNegativeFeatureValue;
@@ -47,7 +48,6 @@ private:
 	vector<float> sigmaPositive;
 	vector<float> muNegative;
 	vector<float> sigmaNegative;
-	float learnRate;
 	vector<Rect> detectBox;
 	Mat detectFeatureValue;
 	RNG rng;
