@@ -26,6 +26,7 @@ using namespace cv;
 class CompressiveTracker
 {
 public:
+  float radioMax;
     CompressiveTracker(void);
 	~CompressiveTracker(void);
 

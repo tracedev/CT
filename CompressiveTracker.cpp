@@ -259,7 +259,6 @@ void CompressiveTracker::processFrame(Mat& _frame, Rect& _objectBox)
 	integral(_frame, imageIntegral, CV_32F);
 	getFeatureValue(imageIntegral, detectBox, detectFeatureValue);
 	int radioMaxIndex;
-	float radioMax;
 	radioClassifier(muPositive, sigmaPositive, muNegative, sigmaNegative, detectFeatureValue, radioMax, radioMaxIndex);
 	_objectBox = detectBox[radioMaxIndex];
 
