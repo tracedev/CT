@@ -2,7 +2,7 @@ project(CompressiveTracking)
 
 cmake_minimum_required(VERSION 2.6)
 
-find_package(OpenCV REQUIRED)
+find_package(OpenCV REQUIRED highgui video videoio imgproc imgcodecs)
 
 set(CMAKE_BUILD_TYPE Release)
 
