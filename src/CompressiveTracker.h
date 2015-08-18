@@ -1,10 +1,10 @@
 /************************************************************************
-* File:	CompressiveTracker.h
+* File: CompressiveTracker.h
 * Brief: C++ demo for paper: Kaihua Zhang, Lei Zhang, Ming-Hsuan Yang,"Real-Time Compressive Tracking," ECCV 2012.
 * Version: 1.0
 * Author: Yang Xian
 * Email: yang_xian521@163.com
-* Date:	2012/08/03
+* Date: 2012/08/03
 * History:
 * Revised by Kaihua Zhang on 14/8/2012, 23/8/2012
 * Email: zhkhua@gmail.com
@@ -16,51 +16,45 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <vector>
 
-#ifndef MAX_PATH
 #define MAX_PATH 4096
-#endif
 
-using std::vector;
-using namespace cv;
-//---------------------------------------------------
-class CompressiveTracker
-{
+class CompressiveTracker {
 public:
-  float radioMax;
-	float learnRate;
-	int rSearchWindow;
-    CompressiveTracker(void);
-	~CompressiveTracker(void);
+    float radioMax;
+    float learnRate;
+    int rSearchWindow;
+    CompressiveTracker();
+    ~CompressiveTracker();
 
 private:
-	int featureMinNumRect;
-	int featureMaxNumRect;
-	int featureNum;
-	vector<vector<Rect> > features;
-	vector<vector<float> > featuresWeight;
-	int rOuterPositive;
-	vector<Rect> samplePositiveBox;
-	vector<Rect> sampleNegativeBox;
-	Mat imageIntegral;
-	Mat samplePositiveFeatureValue;
-	Mat sampleNegativeFeatureValue;
-	vector<float> muPositive;
-	vector<float> sigmaPositive;
-	vector<float> muNegative;
-	vector<float> sigmaNegative;
-	vector<Rect> detectBox;
-	Mat detectFeatureValue;
-	RNG rng;
+    int featureMinNumRect;
+    int featureMaxNumRect;
+    int featureNum;
+    std::vector<std::vector<cv::Rect> > features;
+    std::vector<std::vector<float> > featuresWeight;
+    int rOuterPositive;
+    std::vector<cv::Rect> samplePositiveBox;
+    std::vector<cv::Rect> sampleNegativeBox;
+    cv::Mat imageIntegral;
+    cv::Mat samplePositiveFeatureValue;
+    cv::Mat sampleNegativeFeatureValue;
+    std::vector<float> muPositive;
+    std::vector<float> sigmaPositive;
+    std::vector<float> muNegative;
+    std::vector<float> sigmaNegative;
+    std::vector<cv::Rect> detectBox;
+    cv::Mat detectFeatureValue;
+    cv::RNG rng;
 
 private:
-	void HaarFeature(Rect& _objectBox, int _numFeature);
-	void sampleRect(Mat& _image, Rect& _objectBox, float _rInner, float _rOuter, int _maxSampleNum, vector<Rect>& _sampleBox);
-	void sampleRect(Mat& _image, Rect& _objectBox, float _srw, vector<Rect>& _sampleBox);
-	void getFeatureValue(Mat& _imageIntegral, vector<Rect>& _sampleBox, Mat& _sampleFeatureValue);
-	void classifierUpdate(Mat& _sampleFeatureValue, vector<float>& _mu, vector<float>& _sigma, float _learnRate);
-	void radioClassifier(vector<float>& _muPos, vector<float>& _sigmaPos, vector<float>& _muNeg, vector<float>& _sigmaNeg,
-						Mat& _sampleFeatureValue, float& _radioMax, int& _radioMaxIndex);
+    void HaarFeature(cv::Rect& _objectBox, int _numFeature);
+    void sampleRect(cv::Mat& _image, cv::Rect& _objectBox, float _rInner, float _rOuter, int _maxSampleNum, std::vector<cv::Rect>& _sampleBox);
+    void sampleRect(cv::Mat& _image, cv::Rect& _objectBox, float _srw, std::vector<cv::Rect>& _sampleBox);
+    void getFeatureValue(cv::Mat& _imageIntegral, std::vector<cv::Rect>& _sampleBox, cv::Mat& _sampleFeatureValue);
+    void classifierUpdate(cv::Mat& _sampleFeatureValue, std::vector<float>& _mu, std::vector<float>& _sigma, float _learnRate);
+    void radioClassifier(std::vector<float>& _muPos, std::vector<float>& _sigmaPos, std::vector<float>& _muNeg, std::vector<float>& _sigmaNeg,
+                         cv::Mat& _sampleFeatureValue, float& _radioMax, int& _radioMaxIndex);
 public:
-	void processFrame(Mat& _frame, Rect& _objectBox);
-	void init(Mat& _frame, Rect& _objectBox);
+    void processFrame(cv::Mat& _frame, cv::Rect& _objectBox);
+    void init(cv::Mat& _frame, cv::Rect& _objectBox);
 };

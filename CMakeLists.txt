@@ -6,6 +6,5 @@ include_directories (${OpenCV_INCLUDE_DIRS})
 
 set(CT_INCLUDE "${CMAKE_CURRENT_SOURCE_DIR}/src" PARENT_SCOPE)
 
-
 add_library(ct src/CompressiveTracker.cpp)
 target_link_libraries(ct ${OpenCV_LIBS})
